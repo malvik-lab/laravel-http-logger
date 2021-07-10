@@ -1,0 +1,30 @@
+{
+    "name": "malvik-lab/laravel-http-logger",
+    "description": "",
+    "keywords": [],
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "Vittorio Malaspina",
+            "email": "vittorio.malaspina@gmail.com"
+        }
+    ],
+    "require": {},
+    "autoload": {
+        "psr-4": {
+            "MalvikLab\\LaravelHttpLogger\\": "src/"
+        }
+    },
+    "extra": {
+        "laravel": {
+            "providers": [
+                "MalvikLab\\LaravelHttpLogger\\Providers\\LaravelHttpLoggerServiceProvider"
+            ]
+        }
+    },
+    "config": {
+        "sort-packages": true
+    },
+    "minimum-stability": "dev",
+    "prefer-stable": true
+}
