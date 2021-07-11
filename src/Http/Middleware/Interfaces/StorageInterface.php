@@ -7,5 +7,5 @@ use Illuminate\Http\Response;
 
 interface StorageInterface
 {
-    public function exec(Request $request, Response $response, string $requestContent, string $responseContent);
+    public function exec(Request $request, Response $response, string $requestContent, string $responseContent, int $executionTime);
 }
