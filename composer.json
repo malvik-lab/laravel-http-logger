@@ -1,7 +1,7 @@
 {
     "name": "malvik-lab/laravel-http-logger",
-    "description": "",
-    "keywords": [],
+    "description": "Log every request and response of Laravel PHP Framework.",
+    "keywords": ["Laravel", "Log", "Request", "Response"],
     "license": "MIT",
     "authors": [
         {
