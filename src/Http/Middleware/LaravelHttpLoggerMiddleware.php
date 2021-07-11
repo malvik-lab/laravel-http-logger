@@ -55,7 +55,9 @@ class LaravelHttpLoggerMiddleware
             $responseContent = $this->hideKeys($response);
         }
 
-        $this->storageAdapter->exec($request, $response, $requestContent, $responseContent);
+        $executionTime = ceil((microtime(true) - LARAVEL_START) * 1000);
+
+        $this->storageAdapter->exec($request, $response, $requestContent, $responseContent, $executionTime);
     }
 
     private function hideContent($obj): string

@@ -12,7 +12,7 @@ use Exception;
 
 class DbAdapter implements StorageInterface
 {
-    public function exec(Request $request, Response $response, string $requestContent, string $responseContent)
+    public function exec(Request $request, Response $response, string $requestContent, string $responseContent, int $executionTime)
     {
         try {
             DB::insert('
@@ -52,7 +52,7 @@ class DbAdapter implements StorageInterface
                     $request->headers->get('Content-Type'),
                     $response->headers->get('Content-Type'),
                     $response->getStatusCode(),
-                    defined('LUMEN_START') ? ceil((microtime(true) - LUMEN_START) * 1000) : null,
+                    $executionTime,
                     $requestContent,
                     $responseContent,
                     Carbon::now()
