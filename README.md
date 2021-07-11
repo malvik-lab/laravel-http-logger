@@ -1,4 +1,4 @@
-# Laravel Request Log
+# Laravel Http Logger
 Log every request and response of [Laravel PHP Framework](https://github.com/laravel/laravel).
 
 The package saves all the data of the requests and responses in the "request_log" table, but if you want you can use a custom adapter.
