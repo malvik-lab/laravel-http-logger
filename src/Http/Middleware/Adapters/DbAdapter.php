@@ -12,7 +12,7 @@ use Exception;
 
 class DbAdapter implements StorageInterface
 {
-    public function exec(Request $request, Response $response, string $requestContent, string $responseContent, int $executionTime)
+    public function exec(Request $request, $response, string $requestContent, string $responseContent, int $executionTime)
     {
         try {
             DB::insert('
