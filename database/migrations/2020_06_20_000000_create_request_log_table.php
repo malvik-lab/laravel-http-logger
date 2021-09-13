@@ -26,7 +26,7 @@ class CreateRequestLogTable extends Migration
             $table->integer('execution_time')->nullable();
             $table->longText('request')->nullable();
             $table->longText('response')->nullable();
-            $table->dateTimeTz('datetime')->useCurrent();
+            $table->timestamp('datetime')->useCurrent();
         });
     }
 

@@ -22,13 +22,22 @@ $ php artisan vendor:publish --tag=malviklab-laravel-http-logger-migrations
 ```
 $ php artisan migrate
 ```
+## (Recommended) Use on Global Middleware
+```php
+// app/Http/Kernel.php
+protected $middleware = [
+    \MalvikLab\LaravelHttpLogger\Http\Middleware\LaravelHttpLoggerMiddleware::class,
+    // ...
+];
+```
 
-## Use on your routes
+## (Alternative) Use on your routes
 ```php
 Route::middleware(['malviklab-laravel-http-logger'])->group(function () {
     // your routes here
 });
 ```
+
 
 ## Configuration
 In the configuration file you can set any values present in the requests and responses to be hidden (eg password or access token), the word with which to hide and the adapter to be used for saving.
