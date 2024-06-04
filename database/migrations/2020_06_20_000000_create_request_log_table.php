@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreateRequestLogTable extends Migration
+return new class extends Migration
 {
     /**
      * Run the migrations.
@@ -13,7 +13,7 @@ class CreateRequestLogTable extends Migration
      */
     public function up()
     {
-        Schema::create('request_log', function (Blueprint $table) {
+        Schema::create('request_logs', function (Blueprint $table) {
             $table->id();
             $table->boolean('request_secure')->nullable();
             $table->string('request_method')->nullable();
@@ -39,4 +39,4 @@ class CreateRequestLogTable extends Migration
     {
         Schema::dropIfExists('request_log');
     }
-}
+};

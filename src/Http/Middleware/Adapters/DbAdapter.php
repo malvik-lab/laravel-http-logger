@@ -9,55 +9,26 @@ use Illuminate\Support\Facades\DB;
 use Carbon\Carbon;
 use Log;
 use Exception;
+use MalvikLab\LaravelHttpLogger\Models\RequestLog;
 
 class DbAdapter implements StorageInterface
 {
     public function exec(Request $request, $response, string $requestContent, string $responseContent, int $executionTime)
     {
         try {
-            DB::insert('
-                INSERT LOW_PRIORITY INTO request_log (
-                    request_secure,
-                    request_method,
-                    request_uri,
-                    request_ip,
-                    request_user_agent,
-                    request_content_type,
-                    response_content_type,
-                    response_status_code,
-                    execution_time,
-                    request,
-                    response,
-                    datetime
-                ) VALUES (
-                    ?,
-                    ?,
-                    ?,
-                    ?,
-                    ?,
-                    ?,
-                    ?,
-                    ?,
-                    ?,
-                    ?,
-                    ?,
-                    ?
-                )',
-                [
-                    $request->secure(),
-                    $request->method(),
-                    $request->getRequestUri(),
-                    $request->ip(),
-                    $request->userAgent(),
-                    $request->headers->get('Content-Type'),
-                    $response->headers->get('Content-Type'),
-                    $response->getStatusCode(),
-                    $executionTime,
-                    $requestContent,
-                    $responseContent,
-                    Carbon::now()
-                ]
-            );
+            $requestLog = new RequestLog();
+            $requestLog->request_secure = $request->secure();
+            $requestLog->request_method = $request->method();
+            $requestLog->request_uri = $request->getRequestUri();
+            $requestLog->request_ip = $request->ip();
+            $requestLog->request_user_agent = $request->userAgent();
+            $requestLog->request_content_type = $request->headers->get('Content-Type');
+            $requestLog->response_content_type = $response->headers->get('Content-Type');
+            $requestLog->execution_time = $executionTime;
+            $requestLog->request = $requestContent;
+            $requestLog->response = $responseContent;
+            $requestLog->datetime = Carbon::now();
+            $requestLog->save();
         } catch(Exception $e) {
             Log::error($e->getMessage());
         }
